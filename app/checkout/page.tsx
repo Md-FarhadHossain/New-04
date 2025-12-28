@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import { useAdmin } from "../context/AdminContext";
 import { trackEvent } from "../../lib/tracker";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -47,11 +47,11 @@ export default function CheckoutPage() {
         }
     }, [isLoaded, config, qty, subtotal]);
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setForm({...form, [e.target.name]: e.target.value});
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         
         // Save Order Data for Thank You Page (Purchase Event)
