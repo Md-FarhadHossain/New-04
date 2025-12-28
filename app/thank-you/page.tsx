@@ -62,6 +62,16 @@ export default function ThankYouPage() {
                     tax: parsedOrder.tax,
                     total: parsedOrder.total, // Same as value usually
                     
+                    // Extended Data for "More Data"
+                    external_id: parsedOrder.id, // User ID if logged in, or Order ID if not
+                    payment_method: "cash_on_delivery", // Example
+                    shipping_method: "flat_rate", // Example
+                    status: "processing",
+                    
+                    // PixelYourSite typical extras
+                    f5first: "no",
+                    f5last: "no",
+                    
                     // User Stats
                     transactions_count: newCount,
                     width: 0, // ??
@@ -77,7 +87,8 @@ export default function ThankYouPage() {
                         ct: parsedOrder.city,
                         st: "",
                         country: "bd", 
-                        zp: parsedOrder.zip
+                        zp: parsedOrder.zip,
+                        external_id: parsedOrder.id, // For Advanced Matching
                     }
                 });
                 

@@ -57,6 +57,12 @@ function CheckoutContent() {
         e.preventDefault();
         
         // Save Order Data for Thank You Page (Purchase Event)
+        // Also Cache User Data for future Global Events (PageView etc.)
+        localStorage.setItem("user_data_cache", JSON.stringify({
+            fn: form.fn, ln: form.ln, em: form.em, ph: form.ph, 
+            ct: form.city, zp: form.zip, country: form.country 
+        }));
+
         const orderData = {
             id: "ORD-" + Math.floor(Math.random() * 100000),
             ...form,
