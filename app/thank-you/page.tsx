@@ -6,9 +6,26 @@ import { trackEvent } from "../../lib/tracker";
 import { updateStats } from "../../lib/customEvents";
 import Link from "next/link";
 
+
+interface Order {
+    id: string;
+    total: number;
+    qty: number;
+    shipping: number;
+    tax: number;
+    items: any[];
+    fn: string;
+    ln: string;
+    em: string;
+    ph: string;
+    city: string;
+    zip: string;
+    country: string;
+}
+
 export default function ThankYouPage() {
     const { config, isLoaded } = useAdmin();
-    const [order, setOrder] = useState(null);
+    const [order, setOrder] = useState<Order | null>(null);
 
     useEffect(() => {
         const storedOrder = localStorage.getItem("last_order");
