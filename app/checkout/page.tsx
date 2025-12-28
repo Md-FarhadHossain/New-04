@@ -5,7 +5,9 @@ import { useAdmin } from "../context/AdminContext";
 import { trackEvent } from "../../lib/tracker";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function CheckoutPage() {
+import { Suspense } from "react";
+
+function CheckoutContent() {
     const { config, isLoaded } = useAdmin();
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -152,5 +154,13 @@ export default function CheckoutPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function CheckoutPage() {
+    return (
+        <Suspense fallback={<div className="p-8 text-center">Loading Checkout...</div>}>
+            <CheckoutContent />
+        </Suspense>
     );
 }
